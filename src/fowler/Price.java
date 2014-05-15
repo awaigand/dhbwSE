@@ -3,29 +3,18 @@ package fowler;
 abstract public class Price {
 	abstract int getPriceCode();
 
-	double getCharge(int daysRented) {
-		double result = 0;
-		switch (getPriceCode()) {
-		    case Movie.REGULAR:
-		    	result += 2;
-		    	if (daysRented > 2)
-		        	result += (daysRented - 2) * 1.5;
-		    	break;
-		    case Movie.NEW_RELEASE:
-		    	result += daysRented * 3;
-		    	break;
-		    case Movie.CHILDRENS:
-		    	result += 1.5;
-		    	if (daysRented > 3)
-		        	result += (daysRented - 3) * 1.5;
-		    	break;
-		}
-		return result;
-	}
+	abstract double getCharge(int daysRented);
 }
 
 class ChildrensPrice extends Price {
 
+	double getCharge(int daysRented){
+    	double result = 1.5;
+    	if (daysRented > 3)
+        	result += (daysRented - 3) * 1.5;
+    	return result;
+	}
+	
 	@Override
 	int getPriceCode() {
 		return Movie.CHILDRENS;
@@ -35,6 +24,10 @@ class ChildrensPrice extends Price {
 
 class NewReleasePrice extends Price {
 
+	double getCharge(int daysRented){
+    	return daysRented * 3;
+	}
+	
 	@Override
 	int getPriceCode() {
 		return Movie.NEW_RELEASE;
@@ -44,6 +37,13 @@ class NewReleasePrice extends Price {
 
 class RegularPrice extends Price {
 
+	double getCharge(int daysRented){
+    	double result = 2;
+    	if (daysRented > 2)
+        	result += (daysRented - 2) * 1.5;
+    	return result;
+	}
+	
 	@Override
 	int getPriceCode() {
 		return Movie.REGULAR;
