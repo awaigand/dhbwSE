@@ -26,7 +26,8 @@ class Customer {
             Rental each = (Rental) enum_rentals.nextElement();
         	
             //show figures for this rental
-            result += "\t" + each.getMovie().getTitle()+ "\t" + "\t" + each.getDaysRented() + "\t" + String.valueOf(each.getCharge()) + "\n";
+            result += "\t" + each.getMovie().getTitle()+ "\t" + "\t" + 
+            each.getDaysRented() + "\t" + String.valueOf(each.getCharge()) + "\n";
 
         }
         //add footer lines
